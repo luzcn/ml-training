@@ -26,7 +26,7 @@ class ReadCVSDataDemo:
 
 class ReadTTLDataDemo:
     def __init__(self):
-        self.data = pd.read_csv('data/agg_application_pod_hourly.csv', header=None, na_values=[r'\N'])
+        self.data = pd.read_csv('src/data/agg_application_pod_hourly.csv', header=None, na_values=[r'\N'])
         return
 
     def demo(self):
