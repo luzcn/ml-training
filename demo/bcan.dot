@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="Cell Size <= 2.5\ngini = 0.455\nsamples = 683\nvalue = [444, 239]\nclass = benign", fillcolor="#f3c5a4"] ;
+1 [label="Nuclei <= 5.5\ngini = 0.056\nsamples = 418\nvalue = [406, 12]\nclass = benign", fillcolor="#e6853f"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="Clump Thickness <= 6.5\ngini = 0.024\nsamples = 410\nvalue = [405, 5]\nclass = benign", fillcolor="#e5833b"] ;
+1 -> 2 ;
+3 [label="gini = 0.01\nsamples = 405\nvalue = [403, 2]\nclass = benign", fillcolor="#e5823a"] ;
+2 -> 3 ;
+4 [label="gini = 0.48\nsamples = 5\nvalue = [2, 3]\nclass = malignant", fillcolor="#bddef6"] ;
+2 -> 4 ;
+5 [label="Clump Thickness <= 2.5\ngini = 0.219\nsamples = 8\nvalue = [1, 7]\nclass = malignant", fillcolor="#55abe9"] ;
+1 -> 5 ;
+6 [label="gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = benign", fillcolor="#e58139"] ;
+5 -> 6 ;
+7 [label="gini = 0.0\nsamples = 7\nvalue = [0, 7]\nclass = malignant", fillcolor="#399de5"] ;
+5 -> 7 ;
+8 [label="Cell Shape <= 2.5\ngini = 0.246\nsamples = 265\nvalue = [38, 227]\nclass = malignant", fillcolor="#5aade9"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="Clump Thickness <= 5.5\ngini = 0.34\nsamples = 23\nvalue = [18, 5]\nclass = benign", fillcolor="#eca470"] ;
+8 -> 9 ;
+10 [label="gini = 0.1\nsamples = 19\nvalue = [18, 1]\nclass = benign", fillcolor="#e68844"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 4\nvalue = [0, 4]\nclass = malignant", fillcolor="#399de5"] ;
+9 -> 11 ;
+12 [label="Cell Size <= 4.5\ngini = 0.152\nsamples = 242\nvalue = [20, 222]\nclass = malignant", fillcolor="#4ba6e7"] ;
+8 -> 12 ;
+13 [label="gini = 0.375\nsamples = 68\nvalue = [17, 51]\nclass = malignant", fillcolor="#7bbeee"] ;
+12 -> 13 ;
+14 [label="gini = 0.034\nsamples = 174\nvalue = [3, 171]\nclass = malignant", fillcolor="#3c9fe5"] ;
+12 -> 14 ;
+}

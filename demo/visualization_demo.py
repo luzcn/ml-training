@@ -4,8 +4,8 @@ import numpy as np
 
 def demo():
     # setup fig style and x, y limits
-    plt.figure(figsize=(8, 8))
-    plt.style.use('seaborn-whitegrid')
+    # plt.figure(figsize=(8, 8))
+    # plt.style.use('seaborn-whitegrid')
     plt.xticks(range(10, 31, 5))
     plt.xlim(10, 30)
     plt.ylim(10, 40)
@@ -25,4 +25,16 @@ def demo():
     plt.show()
 
 
-demo()
+def scatterplots_demo():
+    rng = np.random.RandomState(0)
+    x = rng.randn(100)
+    y = rng.randn(100)
+    colors = rng.rand(100)
+    sizes = 1000 * rng.rand(100)
+    plt.scatter(x, y, c=colors, s=sizes, alpha=0.3,
+                cmap='viridis')
+    plt.colorbar()  # show color scale
+    plt.show()
+
+
+scatterplots_demo()
