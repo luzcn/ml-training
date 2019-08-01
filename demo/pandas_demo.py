@@ -1,53 +1,31 @@
+import numpy as np
 import pandas as pd
 
 
-class ReadCVSDataDemo:
-    def __init__(self):
-        self.data = pd.read_csv('https://raw.githubusercontent.com/justmarkham/DAT8/master/data/chipotle.tsv', sep='\t')
-        return
+def exercise():
+    data = pd.read_csv('../src/data/Consumer_Complaints.csv')
 
-    def exercise1(self):
-        # examine the data
-        print(self.data.head)
+    # Create a new DataFrame with only the 'Abbrev' and 'Population' columns
+    states = pd.read_csv('../src/data/states.csv')
+    states = states[['Abbrev', 'Population']]
+    states.columns = ['State', 'Population']
 
-        # get total orders
-        print(self.data.quantity.sum())
+    # merge the data and states
+    data = pd.merge(data, states, on='State')
 
-        # get data shape
-        print(self.data.shape)
+    # Generate a new DataFrame that contains the number of
+    # complaints per state and keeps track of those counts
+    by_state = pd.DataFrame(data['State'].value_counts().reset_index())
+    by_state.columns = 'State Count'.split()
 
-        # what are the names of the columns
-        print(self.data.columns)
+    # We need to group by State, which will produce and then count the
+    # number of complaints per state, which we can do with the size()
+    # method. We can use the reset_index() method to give a reasonable
+    # name to the column that was produced.
+    complaints_by_state = data.groupby(['State']).size().reset_index()
 
-        # how many orders are in the DataSet?
-        # use value_counts()
-        print(self.data['order_id'].value_counts().count())
+    merged = pd.merge(by_state, states, on='State').dropna()
+    return merged
 
 
-class ReadTTLDataDemo:
-    def __init__(self):
-        self.data = pd.read_csv('../src/data/agg_application_pod_hourly.csv', header=None, na_values=[r'\N'])
-        return
-
-    def demo(self):
-        print(self.data.head)
-
-        # Set the names of the columns
-        header_str = 'hour_key, date_key, datacenter, superpod, pod,' \
-                     ' mem_utilization, max_app_cpu, avg_app_cpu, gc_perc,' \
-                     'p95_app_cpu, last_modified, app_host_count_active, ' \
-                     'app_transacting_host_count'
-        self.data.columns = header_str.split(', ')
-        print(self.data.head())
-
-        # Inspect the column max_app_cpu
-        print(self.data['max_app_cpu'].describe())
-
-        # drop the missing data
-        print(self.data['max_app_cpu'].dropna().describe())
-
-        # What is the maximum value for the app_host_count_active column?
-        print(self.data['app_host_count_active'].dropna().max())
-
-        # How many times did the maximum values occur in the dataset
-        print(self.data[self.data['app_host_count_active'] == 50].count())
+print(exercise())
